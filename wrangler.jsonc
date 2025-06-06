@@ -13,8 +13,8 @@
 	"env": {
 		"development": {
 			"name": "rv-dev",
+			"workers_dev": false,
 			"route": {
-				"custom_domain": true,
 				"pattern": "dev.rv.keshsad.com/*",
 				"zone_name": "keshsad.com"
 			},
@@ -24,8 +24,8 @@
 		},
 		"production": {
 			"name": "rv-prod",
+			"workers_dev": false,
 			"route": {
-				"custom_domain": true,
 				"pattern": "rv.keshsad.com/*",
 				"zone_name": "keshsad.com"
 			},
