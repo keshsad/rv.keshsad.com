@@ -3,12 +3,13 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"dev": "CLOUDFLARE_ENV=development react-router dev",
 		"build": "react-router build",
-		"cf-typegen": "wrangler types",
-		"deploy": "bun run build && wrangler deploy",
-		"dev": "react-router dev",
+		"preview": "CLOUDFLARE_ENV=development bun run build && vite preview",
+		"deploy": "CLOUDFLARE_ENV=development bun run build && wrangler deploy",
+		"deploy:prod": "CLOUDFLARE_ENV=production bun run build && wrangler deploy",
 		"postinstall": "npm run cf-typegen",
-		"preview": "bun run build && vite preview",
+		"cf-typegen": "wrangler types",
 		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
 	},
 	"dependencies": {
@@ -25,6 +26,7 @@
 		"@types/react": "^19.1.2",
 		"@types/react-dom": "^19.1.2",
 		"tailwindcss": "^4.1.4",
+		"tw-animate-css": "^1.3.4",
 		"typescript": "^5.8.3",
 		"vite": "^6.3.3",
 		"vite-tsconfig-paths": "^5.1.4",
