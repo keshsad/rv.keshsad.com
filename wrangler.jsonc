@@ -19,7 +19,7 @@
 				"zone_name": "keshsad.com"
 			},
 			"vars": {
-				"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare development",
+				"VALUE_FROM_CLOUDFLARE": "development",
 				"APP_URL": "https://dev.rv.keshsad.com"
 			},
 		},
@@ -31,7 +31,7 @@
 				"zone_name": "keshsad.com"
 			},
 			"vars": {
-				"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare production",
+				"VALUE_FROM_CLOUDFLARE": "production",
 				"APP_URL": "https://rv.keshsad.com"
 			},
 		}
