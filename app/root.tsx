@@ -47,7 +47,7 @@ export default function App() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main className="w-screen h-screen">
         <SidebarTrigger />
         <Outlet />
       </main>
