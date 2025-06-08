@@ -1,29 +1,22 @@
-import { Hammer, Paperclip, Calendar, Warehouse, ShoppingCart, SquareChartGantt, SendHorizonal, Settings } from "lucide-react"
+import { Hammer, Paperclip, Calendar, Warehouse, ShoppingCart, SquareChartGantt, SendHorizonal, Settings, Drill } from "lucide-react"
+
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton
 } from "./ui/sidebar"
-import { Link } from "react-router"
+import { NavCompany } from "./nav-company"
 import { NavPrimary } from "./nav-primary"
 import { NavSecondary } from "./nav-secondary"
 import { NavTertiary } from "./nav-tertiary"
 import { NavUser } from "./nav-user"
 
-//const items = [
-//  { title: "Jobs", url: "/jobs", icon: Hammer },
-//  { title: "Quotes", url: "/quotes", icon: Paperclip },
-//  { title: "Calendar", url: "/calendar", icon: Calendar },
-//]
-
 const data = {
+  company: {
+    name: "Real Value",
+    icon: Drill,
+  },
   user: {
     name: "Manu",
     email: "manu@rockofadam.com",
@@ -65,8 +58,8 @@ const data = {
   ],
   navTertiary: [
     {
-      title: "Support",
-      url: "/support",
+      title: "Feedback",
+      url: "mailto:rishi@keshsad.com",
       icon: SendHorizonal,
     },
     {
@@ -80,7 +73,9 @@ const data = {
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader>Header</SidebarHeader>
+      <SidebarHeader>
+        <NavCompany company={data.company} />
+      </SidebarHeader>
       <SidebarContent>
         <NavPrimary items={data.navPrimary} />
         <NavSecondary items={data.navSecondary} />
