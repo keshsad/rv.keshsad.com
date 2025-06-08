@@ -14,9 +14,8 @@ export function loader({ context }: Route.LoaderArgs) {
 
 export default function Inventory({ loaderData }: Route.ComponentProps) {
   return (
-    <>
-      <p>{loaderData.message}</p>
-      <h1>Inventory</h1>
-    </>
+    <div className="w-full h-full p-10">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">Inventory</h1>
+    </div>
   );
 }

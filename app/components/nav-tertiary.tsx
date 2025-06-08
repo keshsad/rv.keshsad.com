@@ -32,7 +32,7 @@ export function NavTertiary() {
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                   <DialogTitle>Settings</DialogTitle>
-                  <DialogDescription>Adjust your company settings here. This includes your fields, templates, accounts, and more</DialogDescription>
+                  <DialogDescription>Adjust your company settings here. This includes fields, templates, accounts, and more.</DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
                   <DialogClose asChild>

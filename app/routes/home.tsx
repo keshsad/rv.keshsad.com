@@ -13,9 +13,8 @@ export function loader({ context }: Route.LoaderArgs) {
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   return (
-    <main className="w-full h-full flex items-center justify-center">
-      <span>{loaderData.message} environment</span>
-    </main>
-
+    <div className="w-full h-full p-10">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">Home</h1>
+    </div>
   );
 }
