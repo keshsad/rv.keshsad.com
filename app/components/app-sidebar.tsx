@@ -1,4 +1,4 @@
-import { Hammer, Paperclip, Calendar, Warehouse, ShoppingCart, SquareChartGantt, SendHorizonal, Settings, Drill } from "lucide-react"
+import { Hammer, Paperclip, Calendar, Warehouse, ShoppingCart, SquareChartGantt, Drill } from "lucide-react"
 
 import {
   Sidebar,
@@ -56,18 +56,6 @@ const data = {
       icon: SquareChartGantt,
     }
   ],
-  navTertiary: [
-    {
-      title: "Feedback",
-      url: "mailto:rishi@keshsad.com",
-      icon: SendHorizonal,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: Settings,
-    },
-  ]
 }
 
 export function AppSidebar() {
@@ -79,7 +67,7 @@ export function AppSidebar() {
       <SidebarContent>
         <NavPrimary items={data.navPrimary} />
         <NavSecondary items={data.navSecondary} />
-        <NavTertiary items={data.navTertiary} />
+        <NavTertiary />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
