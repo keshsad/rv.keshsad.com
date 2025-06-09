@@ -9,8 +9,9 @@ import {
 import type { Route } from "./+types/root";
 
 import "./app.css";
-import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
 import { AppSidebar } from "./components/app-sidebar";
+import { SiteHeader } from "./components/site-header";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -45,12 +46,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <SidebarProvider>
+    <SidebarProvider >
       <AppSidebar />
-      <main className="w-screen h-screen">
-        <SidebarTrigger />
-        <Outlet />
-      </main>
+      <SidebarInset>
+        <SiteHeader />
+        <main className="w-full h-full">
+          <Outlet />
+        </main>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
