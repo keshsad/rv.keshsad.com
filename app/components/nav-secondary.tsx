@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react"
-import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar"
-import { Link } from "react-router"
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "./ui/sidebar"
+import { Link, useMatch } from "react-router"
 
 export function NavSecondary({ items }: {
   items: {
@@ -9,14 +9,23 @@ export function NavSecondary({ items }: {
     icon: LucideIcon
   }[]
 }) {
+  const { toggleSidebar, isMobile } = useSidebar()
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Office</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map(item => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
+            <SidebarMenuItem
+              key={item.title}
+              onClick={() => isMobile && toggleSidebar()}
+            >
+              <SidebarMenuButton
+                asChild
+                tooltip={item.title}
+                isActive={useMatch(item.url) ? true : undefined}
+              >
                 <Link to={item.url}>
                   <item.icon />
                   <span>{item.title}</span>
