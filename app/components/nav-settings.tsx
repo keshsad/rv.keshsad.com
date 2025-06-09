@@ -49,7 +49,7 @@ export function NavSettings() {
                             asChild
                             onClick={() => setSettingsPage(item.name)}
                             isActive={item.name === settingsPage}
-                            className="hover:cursor-pointer"
+                            className="select-none hover:cursor-pointer"
                           >
                             <div>
                               <item.icon />
