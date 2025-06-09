@@ -1,5 +1,3 @@
-import { Hammer, Paperclip, Calendar, Warehouse, ShoppingCart, SquareChartGantt, Drill } from "lucide-react"
-
 import {
   Sidebar,
   SidebarContent,
@@ -11,17 +9,9 @@ import { NavPrimary } from "./nav-primary"
 import { NavSecondary } from "./nav-secondary"
 import { NavTertiary } from "./nav-tertiary"
 import { NavUser } from "./nav-user"
+import { Hammer, Paperclip, Calendar, Warehouse, ShoppingCart, SquareChartGantt } from "lucide-react"
 
 const data = {
-  company: {
-    name: "Real Value",
-    icon: Drill,
-  },
-  user: {
-    name: "Manu",
-    email: "manu@rockofadam.com",
-    avatar: "https://github.com/keshsad.png",
-  },
   navPrimary: [
     {
       title: "Jobs",
@@ -62,7 +52,7 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <NavCompany company={data.company} />
+        <NavCompany />
       </SidebarHeader>
       <SidebarContent>
         <NavPrimary items={data.navPrimary} />
@@ -70,7 +60,7 @@ export function AppSidebar() {
         <NavTertiary />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )

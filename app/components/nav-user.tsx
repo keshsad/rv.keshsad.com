@@ -1,15 +1,15 @@
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "./ui/sidebar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from "lucide-react"
+import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut } from "lucide-react"
 
-export function NavUser({ user }: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+const user = {
+  name: "Manu",
+  email: "manu@rockofadam.com",
+  avatar: "https://github.com/keshsad.png",
+}
+
+export function NavUser() {
   const { isMobile } = useSidebar()
 
   return (

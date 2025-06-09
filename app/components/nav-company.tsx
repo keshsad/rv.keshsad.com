@@ -1,13 +1,14 @@
 import { Link } from "react-router"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar"
-import type { LucideIcon } from "lucide-react"
+import { Drill } from "lucide-react"
 
-export function NavCompany({ company }: {
-  company: {
-    name: string
-    icon: LucideIcon
-  }
-}) {
+const company = {
+  name: "Real Value",
+  plan: "Enterprise",
+  icon: Drill,
+}
+
+export function NavCompany() {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -15,7 +16,7 @@ export function NavCompany({ company }: {
           <Link to="/">
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{company.name}</span>
-              <span className="truncate text-xs">Enterprise</span>
+              <span className="truncate text-xs">{company.plan}</span>
             </div>
           </Link>
         </SidebarMenuButton>
