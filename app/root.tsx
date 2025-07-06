@@ -13,6 +13,14 @@ import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
 import { AppSidebar } from "./components/app-sidebar";
 import { SiteHeader } from "./components/site-header";
 
+export async function loader({ context }: Route.LoaderArgs) {
+  // check for auth cookie
+  // if not authenticated, redirect to login
+  // auth function is in lib/auth.ts
+  // instead of getCookies, use `request.headers.get("Cookie)` inside loader/action
+  return {}
+}
+
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -45,6 +53,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  // useAuth to get user and loading status
+  // if loading, wait or render loading component
+  // if no user, go to login page
+  // when user authenticated, render app
+
   return (
     <SidebarProvider >
       <AppSidebar />
