@@ -60,7 +60,7 @@ export function DataTable<TData, TValue>({
       columnFilters,
       columnVisibility,
       rowSelection
-    }
+    },
   })
 
   return (
@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto gap-1.5 px-3 h-8 has-[>svg]:px-2.5">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
