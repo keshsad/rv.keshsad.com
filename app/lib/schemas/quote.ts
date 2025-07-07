@@ -33,11 +33,11 @@ export const quoteDetailSchema = z.object({
   id: z.string().uuid(),
   createdAt: z.string().datetime({ offset: true }).transform((val) => new Date(val)),
   updatedAt: z.string().datetime({ offset: true }).transform((val) => new Date(val)),
-  ownder: userSchema,
-  quote: quoteSchema,
-  account: accountSchema,
+  owner: userSchema,
+  quote: z.lazy(() => quoteSchema),
+  account: z.lazy(() => accountSchema),
   lineItems: z.array(quoteLineItemSchema),
-  job: jobSchema,
+  job: z.lazy(() => jobSchema),
 })
 
 export type Quote = z.infer<typeof quoteSchema>

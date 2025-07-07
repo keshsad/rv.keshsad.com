@@ -29,9 +29,9 @@ export const jobDetailSchema = z.object({
   updatedAt: z.string().datetime({ offset: true }).transform((val) => new Date(val)),
   owner: userSchema,
   job: jobSchema,
-  account: accountSchema,
-  quotes: z.array(quoteSchema),
-  primaryQuote: quoteSchema,
+  account: z.lazy(() => accountSchema),
+  quotes: z.lazy(() => z.array(quoteSchema)),
+  primaryQuote: z.lazy(() => quoteSchema),
   assigned: z.array(userSchema),
   notes: z.string().optional(),
 })

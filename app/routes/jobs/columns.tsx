@@ -125,6 +125,10 @@ export const columns: ColumnDef<Job>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("date"))
+      return <span>{date.toLocaleDateString()}</span>
+    }
   },
   {
     accessorKey: "address",
@@ -140,8 +144,9 @@ export const columns: ColumnDef<Job>[] = [
       )
     },
     cell: ({ row }) => {
-      const { street }: Job["address"] = row.getValue("address")
-      return <span>{street}</span>
+      //const { street }: Job["address"] = row.getValue("address")
+      const address = row.getValue("address") as Job["address"]
+      return <span>{address.street}</span>
     }
   },
   {
@@ -170,14 +175,15 @@ export const columns: ColumnDef<Job>[] = [
             >
               Copy Address
             </DropdownMenuItem>
-            <DropdownMenuItem
-            >
+            <DropdownMenuItem asChild>
               <Link to={`/jobs/${job.id}`}>
                 View Job
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem className="text-destructive focus:bg-destructive/10 focus:text-destructive">
+              Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

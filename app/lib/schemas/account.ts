@@ -20,8 +20,8 @@ export const accountDetailSchema = z.object({
   createdAt: z.string().datetime({ offset: true }).transform((val) => new Date(val)),
   updatedAt: z.string().datetime({ offset: true }).transform((val) => new Date(val)),
   account: accountSchema,
-  jobs: z.array(jobSchema),
-  quotes: z.array(quoteSchema),
+  jobs: z.lazy(() => z.array(jobSchema)),
+  quotes: z.lazy(() => z.array(quoteSchema)),
 })
 
 export type Account = z.infer<typeof accountSchema>
