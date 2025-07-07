@@ -1,18 +1,11 @@
+import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 import { type ColumnDef } from "@tanstack/react-table"
-
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Link } from "react-router";
+import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
-
-export type Job = {
-  id: string
-  title: string
-  address: {
-    street: string
-    city: string
-    state: string
-    zip: string
-  }
-  status: "measure" | "fabricate" | "install" | "punch"
-}
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
+import { type Job } from "~/lib/schemas/job";
 
 export const columns: ColumnDef<Job>[] = [
   {
@@ -34,22 +27,161 @@ export const columns: ColumnDef<Job>[] = [
         aria-label="Select row"
       />
     ),
+    enableSorting: false,
+    enableHiding: false,
   },
   {
-    accessorKey: "title",
-    header: "Title",
+    accessorKey: "jobNumber",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Job #
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    }
+  },
+  {
+    accessorKey: "name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    }
+  },
+  {
+    accessorKey: "accountName",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Account
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    }
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      let status = row.getValue("status") as string
+      return <div className="capitalize">{status}</div>
+    }
+  },
+  {
+    accessorKey: "total",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          <div className="text-right">Total</div>
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const total = parseFloat(row.getValue("total"))
+      const formatted = new Intl.NumberFormat("en-us", {
+        style: "currency",
+        currency: "USD",
+      }).format(total)
+      return <div className="text-right font-medium">{formatted}</div>
+    }
+  },
+  {
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "address",
-    header: "Address",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Address
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const { street }: Job["address"] = row.getValue("address")
       return <span>{street}</span>
     }
   },
   {
-    accessorKey: "status",
-    header: "Status",
-  },
+    id: "actions",
+    cell: ({ row }) => {
+      const job = row.original
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(job.jobNumber.toString())}
+            >
+              Copy Job #
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(`${job.address.street} ${job.address.city}, ${job.address.state} ${job.address.zip}`)}
+            >
+              Copy Address
+            </DropdownMenuItem>
+            <DropdownMenuItem
+            >
+              <Link to={`/jobs/${job.id}`}>
+                View Job
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Delete</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
+    }
+  }
 ]
 

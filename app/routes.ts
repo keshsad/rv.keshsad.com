@@ -10,17 +10,17 @@ export default [
   index("routes/home.tsx"),
 
   ...prefix("jobs", [
-    index("routes/jobs/home.tsx"),
+    index("routes/jobs/index.tsx"),
     route(":jid", "routes/jobs/job.tsx"),
   ]),
 
   ...prefix("quotes", [
-    index("routes/quotes/home.tsx"),
+    index("routes/quotes/index.tsx"),
     route(":qid", "routes/quotes/quote.tsx"),
   ]),
 
   ...prefix("calendar", [
-    index("routes/calendar/home.tsx"),
+    index("routes/calendar/index.tsx"),
   ]),
 
   route("purchasing", "routes/purchasing.tsx"),
