@@ -31,6 +31,7 @@ export const columns: ColumnDef<Job>[] = [
     enableHiding: false,
   },
   {
+    id: "job #",
     accessorKey: "jobNumber",
     header: ({ column }) => {
       return (
@@ -45,6 +46,7 @@ export const columns: ColumnDef<Job>[] = [
     }
   },
   {
+    id: "name",
     accessorKey: "name",
     header: ({ column }) => {
       return (
@@ -59,6 +61,27 @@ export const columns: ColumnDef<Job>[] = [
     }
   },
   {
+    id: "address",
+    accessorKey: "address",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Address
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      //const { street }: Job["address"] = row.getValue("address")
+      const address = row.getValue("address") as Job["address"]
+      return <span>{address.street}</span>
+    }
+  },
+  {
+    id: "account",
     accessorKey: "accountName",
     header: ({ column }) => {
       return (
@@ -73,6 +96,7 @@ export const columns: ColumnDef<Job>[] = [
     }
   },
   {
+    id: "status",
     accessorKey: "status",
     header: ({ column }) => {
       return (
@@ -91,6 +115,26 @@ export const columns: ColumnDef<Job>[] = [
     }
   },
   {
+    id: "date",
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("date"))
+      return <span>{date.toLocaleDateString()}</span>
+    }
+  },
+  {
+    id: "total",
     accessorKey: "total",
     header: ({ column }) => {
       return (
@@ -110,43 +154,6 @@ export const columns: ColumnDef<Job>[] = [
         currency: "USD",
       }).format(total)
       return <div className="text-right font-medium">{formatted}</div>
-    }
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => {
-      const date = new Date(row.getValue("date"))
-      return <span>{date.toLocaleDateString()}</span>
-    }
-  },
-  {
-    accessorKey: "address",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Address
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => {
-      //const { street }: Job["address"] = row.getValue("address")
-      const address = row.getValue("address") as Job["address"]
-      return <span>{address.street}</span>
     }
   },
   {

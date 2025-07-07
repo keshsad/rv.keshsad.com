@@ -1,7 +1,7 @@
 import type { Route } from "./+types/index";
 
 import { columns } from "./columns";
-import { mockData } from "./data";
+import { mockData, mockDataAI } from "./data";
 import { jobSchema, type Job } from "~/lib/schemas/job";
 import { DataTable } from "./data-table";
 
