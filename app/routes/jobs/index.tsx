@@ -22,6 +22,7 @@ export default function Jobs({ loaderData }: Route.ComponentProps) {
   return (
     <div className="w-full h-full p-8">
       <div className="container mx-auto py-8">
+        <DataTable columns={columns} data={data} />
       </div>
     </div>
   );
