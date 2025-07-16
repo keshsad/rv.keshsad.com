@@ -9,16 +9,16 @@ import {
 import type { Route } from "./+types/root";
 
 import "./app.css";
-import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
-import { AppSidebar } from "./components/app-sidebar";
-import { SiteHeader } from "./components/site-header";
+import { getTokens } from "./lib/auth";
 
-export async function loader({ context }: Route.LoaderArgs) {
-  // check for auth cookie
-  // if not authenticated, redirect to login
-  // auth function is in lib/auth.ts
-  // instead of getCookies, use `request.headers.get("Cookie)` inside loader/action
-  return {}
+export async function loader({ context, request }: Route.LoaderArgs) {
+  //const url = new URL(request.url)
+  //const { access, refresh } = await getTokens(request)
+  //const noAccess = typeof access === "object" && access !== null && Object.keys(access).length === 0
+  //if (!url.pathname.startsWith("/login") && noAccess) {
+  //  return redirect("/login")
+  //}
+  return null
 }
 
 export const links: Route.LinksFunction = () => [
@@ -59,15 +59,7 @@ export default function App() {
   // when user authenticated, render app
 
   return (
-    <SidebarProvider >
-      <AppSidebar />
-      <SidebarInset>
-        <SiteHeader />
-        <main className="w-full h-full">
-          <Outlet />
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+    <Outlet />
   );
 }
 
