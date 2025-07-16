@@ -15,6 +15,9 @@ export default [
       index("routes/quotes/index.tsx"),
       route(":qid", "routes/quotes/quote.tsx"),
     ]),
+    ...prefix("calendar", [
+      index("routes/calendar/index.tsx"),
+    ]),
     route("purchasing", "routes/purchasing.tsx"),
     route("inventory", "routes/inventory.tsx"),
     route("reports", "routes/reports.tsx"),
